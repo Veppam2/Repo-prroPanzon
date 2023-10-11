@@ -10,26 +10,6 @@ def index(request):
     return render(request, "index.html")
 
 
-'''
-def login_view(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request, request.POST)
-        print(form.is_valid())
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('webApp:dashboard')
-        else:
-            return render(request, 'login.html', {'error_message': 'Credenciales incorrectas'})
-    else:
-        form = AuthenticationForm()
-
-    return render(request, 'login.html', {'form': form})
-'''
-
 def login_view(request):
     if request.method != 'POST':
         return render(request, 'login.html', {'form': AuthenticationForm()})
@@ -46,6 +26,7 @@ def login_view(request):
             messages.error(request, 'Error al iniciar sesion. Intente mas tarde')
 
     return render(request, 'login.html', {'error_message': 'Credenciales incorrectas'})
+
 
 def logout_view(request):
     logout(request)
