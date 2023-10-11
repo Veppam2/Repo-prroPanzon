@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib import messages
 
 # Create your views here.
 
@@ -9,6 +10,7 @@ def index(request):
     return render(request, "index.html")
 
 
+'''
 def login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
@@ -26,7 +28,24 @@ def login_view(request):
         form = AuthenticationForm()
 
     return render(request, 'login.html', {'form': form})
+'''
 
+def login_view(request):
+    if request.method != 'POST':
+        return render(request, 'login.html', {'form': AuthenticationForm()})
+
+    form = AuthenticationForm(request, request.POST)
+    if form.is_valid():
+        username = form.cleaned_data['username']
+        password = form.cleaned_data['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('webApp:dashboard')
+        else:
+            messages.error(request, 'Error al iniciar sesion. Intente mas tarde')
+
+    return render(request, 'login.html', {'error_message': 'Credenciales incorrectas'})
 
 def logout_view(request):
     logout(request)
