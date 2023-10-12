@@ -15,7 +15,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
-#Intent for loading database credentials
+#Intent for loading sensible network information 
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,8 +31,11 @@ SECRET_KEY = 'django-insecure-!jvgi8me*1!ins7c(l&x9)vz!kjc=p#yn+s@5&%5h2*31dli!)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True 
 
-#ALLOWED_HOSTS = ['34.125.79.241']
-ALLOWED_HOSTS = ['34.125.79.241', '10.0.0.5','localhost']
+ALLOWED_HOSTS = [
+        os.getenv('APPSERVER_PUBLIC_IP'),
+        os.getenv('APPSERVER_PRIVATE_IP'),
+        'localhost'
+]
 
 
 # Application definition
@@ -81,6 +84,7 @@ WSGI_APPLICATION = 'prroPanzon.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -99,7 +103,6 @@ DATABASES = {
         'PORT': os.getenv('DATABASE_PORT'),
     }
 }
-"""
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
