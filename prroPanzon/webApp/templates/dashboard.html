@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bienvenido</title>
+</head>
+<body>
+    <h1>Bienvenido, {{ nombre_de_usuario }}!</h1>
+    <p>Tu correo electrónico es: {{ correo }}</p>
+    <p>Fecha de alta en el sistema: {{ fecha_de_alta }}</p>
+
+    <a href="{% url 'webApp:logout' %}">Cerrar sesión</a>
+</body>
+</html>
+
