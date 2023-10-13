@@ -40,6 +40,13 @@ ALLOWED_HOSTS = [
         '127.0.0.1'
 ]
 
+CSRF_COOKIE_SECURE = True
+
+CSRF_TRUSTED_ORIGINS = [
+        os.getenv('DOMAIN_NAME'),
+        os.getenv('DOMAIN_NAME_B')
+]
+
 
 # Application definition
 
