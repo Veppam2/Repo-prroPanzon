@@ -35,6 +35,7 @@ ALLOWED_HOSTS = [
         os.getenv('APPSERVER_PUBLIC_IP'),
         os.getenv('APPSERVER_PRIVATE_IP'),
         os.getenv('DOMAIN_NAME'),
+        os.getenv('DOMAIN_NAME_B'),
         'localhost',
         '127.0.0.1'
 ]
