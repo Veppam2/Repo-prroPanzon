@@ -43,10 +43,17 @@ ALLOWED_HOSTS = [
 CSRF_COOKIE_SECURE = True
 
 CSRF_TRUSTED_ORIGINS = [
+        os.getenv('ORIGIN'),
+        os.getenv('ORIGIN_B')
+]
+CORS_ORIGIN_ALLOW_ALL = True
+
+"""
+CORS_ORIGIN_WHITELIST = [
         os.getenv('DOMAIN_NAME'),
         os.getenv('DOMAIN_NAME_B')
 ]
-
+"""
 
 # Application definition
 
@@ -58,6 +65,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webApp',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
